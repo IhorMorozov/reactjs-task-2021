@@ -3,8 +3,8 @@ import styles from './Button.module.scss';
 import classNames from 'classnames';
 
 const Button = (props) => {
-  const { children, newStyle, buttonHandler } = props;
-  const buttonStyle = classNames(styles.button, newStyle)
+  const { children, style, buttonHandler } = props;
+  const buttonStyle = classNames(styles.button, style);
   return (
     <button className={buttonStyle} onClick={buttonHandler}>
       {children}

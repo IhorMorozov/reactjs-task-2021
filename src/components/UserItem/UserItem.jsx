@@ -18,7 +18,7 @@ const UserItem = (props) => {
   return (
     <tr>
       {selectedData.map((data) => (
-        <td>{data}</td>
+        <td key={data}>{data}</td>
       ))}
     </tr>
   );

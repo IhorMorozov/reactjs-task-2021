@@ -3,27 +3,15 @@ import UserItem from '../UserItem/UserItem';
 import './UserList.module.scss';
 
 const UserList = (props) => {
-  const { users } = props;
-  const isUserListExist = users.length > 1;
-  const getColumns = (users) => {
-    if (isUserListExist) {
-      return Object.keys(users[0]);
-    }
-    return null;
-  };
-  if (isUserListExist) {
-    getColumns(users).map((column) => {
-      localStorage.setItem(column, localStorage.getItem(column) || 'true');
-    });
-  }
+  const { users, columns, isUserListExist } = props;
 
   return (
     <table>
       <thead>
         <tr>
           {isUserListExist &&
-            getColumns(users).map((key) => (
-              <th key={key}>{key.toUpperCase()}</th>
+            columns.map((column) => (
+              <th key={column}>{column.toUpperCase()}</th>
             ))}
         </tr>
       </thead>
