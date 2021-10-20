@@ -1,0 +1,46 @@
+@import "../../styles/constants";
+
+.sortItem {
+  &:hover {
+    cursor: pointer;
+  }
+}
+table {
+  margin-top: 2rem;
+  border-spacing: 0;
+  border: 1px solid $grey;
+
+  tr {
+    &:hover {
+      background-color: $hover-color;
+    }
+    :last-child {
+      td {
+        border-bottom: 0;
+      }
+    }
+  }
+
+  th,
+  td {
+    margin: 0;
+    padding: 0.5rem;
+    border-bottom: 1px solid $grey;
+    border-right: 1px solid $grey;
+    text-align: center;
+
+    :last-child {
+      border-right: 0;
+    }
+  }
+  th {
+    background-color: $hover-color;
+  }
+  td:hover {
+    background-color: $logo-color;
+  }
+  a {
+    color: $white;
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,13 @@
+@import '../../../styles/constants';
+
+.search {
+  border-radius: 20px;
+  background-color: $black;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: $white;
+  outline: none;
+  border-style: none;
+  margin: 1rem 50px 1rem 0;
+}
