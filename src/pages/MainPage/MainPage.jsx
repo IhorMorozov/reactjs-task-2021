@@ -19,17 +19,18 @@ const MainPage = () => {
   }
   useEffect(() => {
     fetchUsers();
+    localStorage.clear();
   }, []);
 
   const getColumns = (users) => {
     if (isUserListExist) {
-      return Object.keys(users[0]);
+      return Object.keys(users[0]).map((column) => column.toUpperCase());
     }
     return null;
   };
   if (isUserListExist) {
     getColumns(users).map((column) => {
-      localStorage.setItem(column, localStorage.getItem(column) || 'true');
+      localStorage.setItem(column, localStorage.getItem(column) || 'false');
     });
   }
 

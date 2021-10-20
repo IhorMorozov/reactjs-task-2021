@@ -1,4 +1,4 @@
-@import "../../styles/constants";
+@import '../../styles/constants';
 
 .sortItem {
   &:hover {
@@ -24,7 +24,7 @@ table {
   th,
   td {
     margin: 0;
-    padding: 0.5rem;
+    padding: 0.8rem;
     border-bottom: 1px solid $grey;
     border-right: 1px solid $grey;
     text-align: center;

@@ -5,36 +5,40 @@ import Button from '../UI/Button/Button';
 import Search from '../UI/Search/Search';
 
 const SelectColumns = (props) => {
-  const { columns, isUserListExist, setVisible } = props;
+  const { columns, setVisible } = props;
   const [currentBoard, setCurrentBoard] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
-
   const [boards, setBoards] = useState([
     {
       id: 1,
       title: 'Available Columns',
-      items: ['test1', 'test2'],
+      items: [
+        'ID',
+        'NAME',
+        'USERNAME',
+        'EMAIL',
+        'ADDRESS',
+        'PHONE',
+        'WEBSITE',
+        'COMPANY',
+      ],
     },
     {
       id: 2,
       title: 'Selected Columns',
-      items: ['test3', 'test4'],
+      items: [],
     },
   ]);
 
   function dragOverHandler(e) {
     e.preventDefault();
   }
-
   function dragLeaveHandler(e) {}
-
   function dragStartHandler(e, board, item) {
     setCurrentBoard(board);
     setCurrentItem(item);
   }
-
   function dragEndHandler(e) {}
-
   function dropHandler(e, board, item) {
     e.preventDefault();
     e.stopPropagation();
@@ -42,6 +46,11 @@ const SelectColumns = (props) => {
     currentBoard.items.splice(currentIndex, 1);
     const dropIndex = board.items.indexOf(item);
     board.items.splice(dropIndex + 1, 0, currentItem);
+    if (board.id === 1) {
+      localStorage.setItem(currentItem, 'false');
+    } else {
+      localStorage.setItem(currentItem, 'true');
+    }
     setBoards(
       boards.map((b) => {
         if (b.id === board.id) {
@@ -54,11 +63,15 @@ const SelectColumns = (props) => {
       })
     );
   }
-
   function dropOnBoardHandler(e, board) {
     board.items.push(currentItem);
     const currentIndex = currentBoard.items.indexOf(currentItem);
     currentBoard.items.splice(currentIndex, 1);
+    if (board.id === 1) {
+      localStorage.setItem(currentItem, 'false');
+    } else {
+      localStorage.setItem(currentItem, 'true');
+    }
     setBoards(
       boards.map((b) => {
         if (b.id === board.id) {

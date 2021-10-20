@@ -10,9 +10,11 @@ const UserList = (props) => {
       <thead>
         <tr>
           {isUserListExist &&
-            columns.map((column) => (
-              <th key={column}>{column.toUpperCase()}</th>
-            ))}
+            columns.map((column) => {
+              if (localStorage.getItem(column) === 'true') {
+                return <th key={column}>{column}</th>;
+              }
+            })}
         </tr>
       </thead>
       <tbody>

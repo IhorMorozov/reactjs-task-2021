@@ -4,13 +4,13 @@ const UserItem = (props) => {
   const { user } = props;
   const selectedData = [];
   for (let column in user) {
-    if (localStorage.getItem(column) === 'true') {
+    if (localStorage.getItem(column.toUpperCase()) === 'true') {
       if (column === 'address') {
-        selectedData.push(user[column].city);
+        selectedData.push(user[column.toLowerCase()].city);
       } else if (column === 'company') {
-        selectedData.push(user[column].name);
+        selectedData.push(user[column.toLowerCase()].name);
       } else {
-        selectedData.push(user[column]);
+        selectedData.push(user[column.toLowerCase()]);
       }
     }
   }
