@@ -3,115 +3,23 @@ import Layout from '../UI/Layout/Layout';
 import styles from './SelectColumns.module.scss';
 import Button from '../UI/Button/Button';
 import Search from '../UI/Search/Search';
+import { useDispatch, useSelector } from 'react-redux';
+import Board from '../Board/Board';
 
 const SelectColumns = (props) => {
-  const { columns, setVisible } = props;
-  const [currentBoard, setCurrentBoard] = useState(null);
-  const [currentItem, setCurrentItem] = useState(null);
-  const [boards, setBoards] = useState([
-    {
-      id: 1,
-      title: 'Available Columns',
-      items: [
-        'ID',
-        'NAME',
-        'USERNAME',
-        'EMAIL',
-        'ADDRESS',
-        'PHONE',
-        'WEBSITE',
-        'COMPANY',
-      ],
-    },
-    {
-      id: 2,
-      title: 'Selected Columns',
-      items: [],
-    },
-  ]);
-
-  function dragOverHandler(e) {
-    e.preventDefault();
-  }
-  function dragLeaveHandler(e) {}
-  function dragStartHandler(e, board, item) {
-    setCurrentBoard(board);
-    setCurrentItem(item);
-  }
-  function dragEndHandler(e) {}
-  function dropHandler(e, board, item) {
-    e.preventDefault();
-    e.stopPropagation();
-    const currentIndex = currentBoard.items.indexOf(currentItem);
-    currentBoard.items.splice(currentIndex, 1);
-    const dropIndex = board.items.indexOf(item);
-    board.items.splice(dropIndex + 1, 0, currentItem);
-    if (board.id === 1) {
-      localStorage.setItem(currentItem, 'false');
-    } else {
-      localStorage.setItem(currentItem, 'true');
-    }
-    setBoards(
-      boards.map((b) => {
-        if (b.id === board.id) {
-          return board;
-        }
-        if (b.id === currentBoard.id) {
-          return currentBoard;
-        }
-        return b;
-      })
-    );
-  }
-  function dropOnBoardHandler(e, board) {
-    board.items.push(currentItem);
-    const currentIndex = currentBoard.items.indexOf(currentItem);
-    currentBoard.items.splice(currentIndex, 1);
-    if (board.id === 1) {
-      localStorage.setItem(currentItem, 'false');
-    } else {
-      localStorage.setItem(currentItem, 'true');
-    }
-    setBoards(
-      boards.map((b) => {
-        if (b.id === board.id) {
-          return board;
-        }
-        if (b.id === currentBoard.id) {
-          return currentBoard;
-        }
-        return b;
-      })
-    );
-  }
+  const { setVisible } = props;
+  const dispatch = useDispatch();
+  const boards = useSelector((state) => state.boardsReducer.boards);
+  const currentBoard = useSelector((state) => state.boardsReducer.currentBoard);
+  const currentItem = useSelector((state) => state.boardsReducer.currentItem);
+  const options = { dispatch, boards, currentItem, currentBoard };
 
   return (
-    <Layout style={styles.layoutWidth}>
+    <Layout style={styles.layout}>
       <Search placeholder="Search available columns..." style={styles.search} />
-      <div className={styles.wrapper}>
+      <div className={styles.boardsWrapper}>
         {boards.map((board) => (
-          <div
-            className={styles.board}
-            key={board.title}
-            onDragOver={(e) => dragOverHandler(e)}
-            onDrop={(e) => dropOnBoardHandler(e, board)}
-          >
-            <h3 className={styles.boardTitle}>{board.title}</h3>
-            {board.items.map((item) => (
-              <div
-                onDragOver={(e) => dragOverHandler(e)}
-                onDragLeave={(e) => dragLeaveHandler(e)}
-                onDragStart={(e) => dragStartHandler(e, board, item)}
-                onDragEnd={(e) => dragEndHandler(e)}
-                onDrop={(e) => dropHandler(e, board, item)}
-                draggable={true}
-                className={styles.item}
-                key={item}
-              >
-                {item}
-              </div>
-            ))}
-          </div>
+          <Board board={board} options={options} key={board.title} />
         ))}
       </div>
       <Button style={styles.button} buttonHandler={() => setVisible(false)}>

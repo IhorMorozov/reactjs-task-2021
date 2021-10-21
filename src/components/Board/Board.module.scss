@@ -1,0 +1,16 @@
+@import '../../styles/constants';
+
+.board {
+  min-width: 20rem;
+  min-height: 30rem;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $component-background-color;
+  .boardTitle {
+    margin-bottom: 2rem;
+  }
+}

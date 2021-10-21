@@ -35,12 +35,9 @@ table {
   }
   th {
     background-color: $hover-color;
+    user-select: none;
   }
   td:hover {
     background-color: $logo-color;
-  }
-  a {
-    color: $white;
-    text-decoration: none;
   }
 }
