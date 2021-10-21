@@ -1,15 +1,9 @@
 @import '../../styles/constants';
 
-.sortItem {
-  &:hover {
-    cursor: pointer;
-  }
-}
 table {
   margin-top: 2rem;
   border-spacing: 0;
   border: 1px solid $grey;
-
   tr {
     &:hover {
       background-color: $hover-color;
@@ -20,7 +14,6 @@ table {
       }
     }
   }
-
   th,
   td {
     margin: 0;

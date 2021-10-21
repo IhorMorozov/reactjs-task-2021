@@ -12,7 +12,7 @@
   &:hover {
     background-color: $button-hover-color;
   }
-  @media screen and (max-width: $breakpoint-mobile) {
+  @media screen and (max-width: $breakpoint-tablet) {
     min-height: 20px;
   }
 }

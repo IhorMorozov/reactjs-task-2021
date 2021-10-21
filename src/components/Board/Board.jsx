@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Board.module.scss';
 import {
-  setAvailableColumnsAction,
   setBoardsAction,
   setSelectedColumnsAction,
 } from '../../store/boardsReducer';

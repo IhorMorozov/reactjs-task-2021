@@ -1,10 +1,5 @@
 import { fetchUsersAction } from '../usersReducer';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  setAvailableColumnsAction,
-  setBoardsAction,
-  setSelectedColumnsAction,
-} from '../boardsReducer';
+import { setBoardsAction, setSelectedColumnsAction } from '../boardsReducer';
 
 export const fetchUsers = () => {
   return (dispatch) => {
