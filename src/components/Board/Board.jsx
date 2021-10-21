@@ -48,9 +48,15 @@ const Board = (props) => {
       onDrop={(e) => dropOnBoardHandler(e, board)}
     >
       <h3 className={styles.boardTitle}>{board.title}</h3>
-      {board.items.map((item) => (
-        <BoardItem item={item} options={options} board={board} key={item} />
-      ))}
+      {board.items.length > 0 ? (
+        board.items.map((item) => (
+          <BoardItem item={item} options={options} board={board} key={item} />
+        ))
+      ) : (
+        <p className={styles.hint}>{`No ${board.title
+          .split(' ')[0]
+          .toLowerCase()} columns`}</p>
+      )}
     </div>
   );
 };
