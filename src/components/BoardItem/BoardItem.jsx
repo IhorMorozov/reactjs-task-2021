@@ -1,9 +1,11 @@
 import React from 'react';
 import styles from './BoardItem.module.scss';
 import {
+  setAvailableColumnsAction,
   setBoardsAction,
   setCurrentBoardAction,
   setCurrentItemAction,
+  setSelectedColumnsAction,
 } from '../../store/boardsReducer';
 import Button from '../UI/Button/Button';
 
@@ -43,6 +45,11 @@ const BoardItem = (props) => {
         })
       )
     );
+    if (board.id === 1) {
+      dispatch(setSelectedColumnsAction(currentBoard.items));
+    } else {
+      dispatch(setSelectedColumnsAction(board.items));
+    }
   }
 
   function removeItem(board, item) {
@@ -64,6 +71,7 @@ const BoardItem = (props) => {
         })
       )
     );
+    dispatch(setSelectedColumnsAction(board.items));
   }
   return (
     <div

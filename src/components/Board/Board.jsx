@@ -1,6 +1,10 @@
 import React from 'react';
 import styles from './Board.module.scss';
-import { setBoardsAction } from '../../store/boardsReducer';
+import {
+  setAvailableColumnsAction,
+  setBoardsAction,
+  setSelectedColumnsAction,
+} from '../../store/boardsReducer';
 import BoardItem from '../BoardItem/BoardItem';
 
 const Board = (props) => {
@@ -32,6 +36,11 @@ const Board = (props) => {
         })
       )
     );
+    if (board.id === 1) {
+      dispatch(setSelectedColumnsAction(currentBoard.items));
+    } else {
+      dispatch(setSelectedColumnsAction(board.items));
+    }
   }
   return (
     <div
