@@ -39,12 +39,17 @@ const SelectColumns = (props) => {
       );
     }
   }, [query]);
+  const applySelection = () => {
+    setVisible(false);
+    setQuery('');
+  };
 
   return (
     <Layout style={styles.layout}>
       <Search
         placeholder="Search available columns..."
         style={styles.search}
+        query={query}
         setQuery={setQuery}
       />
       <div className={styles.boardsWrapper}>
@@ -52,7 +57,7 @@ const SelectColumns = (props) => {
           <Board board={board} options={options} key={board.title} />
         ))}
       </div>
-      <Button style={styles.button} buttonHandler={() => setVisible(false)}>
+      <Button style={styles.button} buttonHandler={() => applySelection()}>
         Apply
       </Button>
     </Layout>
