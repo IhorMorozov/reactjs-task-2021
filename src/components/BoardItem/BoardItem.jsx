@@ -5,6 +5,7 @@ import {
   setCurrentBoardAction,
   setCurrentItemAction,
 } from '../../store/boardsReducer';
+import Button from '../UI/Button/Button';
 
 const BoardItem = (props) => {
   const { board, item, options } = props;
@@ -43,6 +44,27 @@ const BoardItem = (props) => {
       )
     );
   }
+
+  function removeItem(board, item) {
+    const currentIndex = board.items.indexOf(item);
+    board.items.splice(currentIndex, 1);
+    const dropIndex = boards[0].items.length;
+    boards[0].items.splice(dropIndex + 1, 0, item);
+    localStorage.setItem(item, 'false');
+    dispatch(
+      setBoardsAction(
+        boards.map((b) => {
+          if (b.id === 1) {
+            return boards[0];
+          }
+          if (b.id === 2) {
+            return board;
+          }
+          return b;
+        })
+      )
+    );
+  }
   return (
     <div
       onDragOver={(e) => dragOverHandler(e)}
@@ -52,6 +74,14 @@ const BoardItem = (props) => {
       className={styles.item}
     >
       {item}
+      {board.id === 2 && (
+        <Button
+          style={styles.button}
+          buttonHandler={() => removeItem(board, item)}
+        >
+          &times;
+        </Button>
+      )}
     </div>
   );
 };

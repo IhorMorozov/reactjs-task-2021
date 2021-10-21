@@ -8,6 +8,7 @@ import Board from '../Board/Board';
 
 const SelectColumns = (props) => {
   const { setVisible } = props;
+  const [query, setQuery] = useState('');
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boardsReducer.boards);
   const currentBoard = useSelector((state) => state.boardsReducer.currentBoard);
@@ -16,7 +17,11 @@ const SelectColumns = (props) => {
 
   return (
     <Layout style={styles.layout}>
-      <Search placeholder="Search available columns..." style={styles.search} />
+      <Search
+        placeholder="Search available columns..."
+        style={styles.search}
+        setQuery={setQuery}
+      />
       <div className={styles.boardsWrapper}>
         {boards.map((board) => (
           <Board board={board} options={options} key={board.title} />

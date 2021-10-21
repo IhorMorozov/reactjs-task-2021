@@ -1,16 +1,5 @@
 const defaultState = {
-  boards: [
-    {
-      id: 1,
-      title: 'Available Columns',
-      items: ['ADDRESS', 'PHONE', 'WEBSITE', 'COMPANY'],
-    },
-    {
-      id: 2,
-      title: 'Selected Columns',
-      items: ['ID', 'NAME', 'USERNAME', 'EMAIL'],
-    },
-  ],
+  boards: [],
   currentBoard: null,
   currentItem: null,
 };

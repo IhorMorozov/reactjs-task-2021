@@ -1,9 +1,32 @@
 import { fetchUsersAction } from '../usersReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { setBoardsAction } from '../boardsReducer';
 
 export const fetchUsers = () => {
   return (dispatch) => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json())
-      .then((data) => dispatch(fetchUsersAction(data)));
+      .then((data) => {
+        dispatch(fetchUsersAction(data));
+        const columns = Object.keys(data[0]).map((column) =>
+          column.toUpperCase()
+        );
+        const selectedColumns = columns.filter((column, index) => index < 4);
+        const availableColumns = columns.filter((column, index) => index >= 4);
+        dispatch(
+          setBoardsAction([
+            {
+              id: 1,
+              title: 'Available Columns',
+              items: availableColumns,
+            },
+            {
+              id: 2,
+              title: 'Selected Columns',
+              items: selectedColumns,
+            },
+          ])
+        );
+      });
   };
 };

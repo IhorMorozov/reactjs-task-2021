@@ -3,7 +3,6 @@ import Layout from '../../components/UI/Layout/Layout';
 import Button from '../../components/UI/Button/Button';
 import Modal from '../../components/UI/Modal/Modal';
 import UserList from '../../components/UserList/UserList';
-import axios from 'axios';
 import SelectColumns from '../../components/SelectColumns/SelectColumns';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../../store/asyncActions/fetchUsers';
